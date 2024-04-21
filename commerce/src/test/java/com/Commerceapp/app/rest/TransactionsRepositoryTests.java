@@ -24,13 +24,13 @@ public class TransactionsRepositoryTests {
     @Test
     public void testCreateTransaction() {
         Transactions transaction = new Transactions();
-        transaction.setFromSource("7444118642");
-        transaction.setToSource("Uber");
-        transaction.setAmount(75);
+        transaction.setFromSource("7527312321");
+        transaction.setToSource("Old Town Lofts");
+        transaction.setAmount(1000);
         transaction.setTransaction_date();
         transaction.setRefNum();
-        transaction.setTypeOf("Merchant:");
-        transaction.setCategory("Transport");
+        transaction.setTypeOf("Property Mangement:");
+        transaction.setCategory("Rent");
         transaction.setPlusorminus("-$");
         repo.save(transaction);
         Transactions savedTransaction = repo.save(transaction);
