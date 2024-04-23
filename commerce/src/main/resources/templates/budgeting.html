@@ -8,42 +8,64 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #F2FFF2;
-            color: #333;
-            background-image: url('https://img.freepik.com/free-vector/green-curve-frame-template_53876-99025.jpg');
-            background-size: cover; /* Cover the entire page */
-            background-position: top;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/free-vector/green-curve-frame-template_53876-99025.jpg');
+            background-size: cover;
+            background-position: top;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-top: 100px; /* Adjust as needed */
         }
         .charts-container {
             display: flex;
-            background-color: #ffffff;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap; /* Allows containers to wrap to the next line if the screen is too small */
+            flex-wrap: wrap;
+            /*padding: 5px;*/
         }
-
         .container {
-            margin-top: 50px;
-            background-color: #ffffff;
-            padding: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin: 20px;
+            width: calc(50% - 150px); /* Adjust width */
+        }
+        .container.text-center {
+            background-color: #fff;
+            justify-content: center;
+            padding: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            position: relative;
+            margin: 20px auto; /* Center the container horizontally */
+            width: calc(50% - 40px); /* Adjust width */
         }
-        h1 {
-            color: #0056b3;
-            margin-bottom: 30px;
-        }
+
         h2 {
             color: #006747;
             margin-bottom: 30px;
         }
         h5 {
             color: #006747;
-            line-height: 3.0; /* Improved line spacing for readability */
-
-            margin-bottom: 100px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
         }
         a {
             color: #FFFFFF;
@@ -70,6 +92,7 @@
         }
         /* Navbar styling */
         .navbar {
+            //position: fixed;
             background-color: rgba(255,255,255,0.50); /* Adjust the color to fit your brand */
             border-radius: 0;
         }
@@ -88,53 +111,17 @@
             color: #000000 !important;
             font-size: 20px !important;
             font: courier !important;
-
-
         }
         .nav-item {
             color: #000000 !important;
             font-size: 20px !important;
             font: courier !important;
-
-        }
-        .uniqueContainer {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Improved font */
-        }
-
-        .left, .right {
-            width: 48%; /* Adjusted width to allow for padding */
-            padding: 10px; /* Added padding for better spacing */
-            box-sizing: border-box; /* Ensures padding does not affect the total width */
-        }
-
-        .left {
-            background-color: #FFFFFF; /* Light blue background for contrast */
-        }
-
-        .right {
-            background-color: #FFFFFF; /* Light grey background for contrast */
-        }
-
-        .uniqueText { /* New class for text styling */
-            color: #006747; /* Dark grey color for better readability */
-            line-height: 4.6; /* Improved line spacing for readability */
-            margin-bottom: 25px; /* Space between paragraphs */
-        }
-
-        /* Adding a subtle box-shadow for a modern look */
-        .left, .right {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 5px; /* Rounded corners */
         }
     </style>
 </head>
-
-
 <body>
+<div class="background-image"></div>
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="https://epicci.org/wp-content/uploads/2019/02/commerce-bank-logo-2x.png" alt="Commerce Bank Logo" class="icon-image" ></a>
@@ -165,40 +152,41 @@
         </div>
     </div>
 </nav>
-<div class="container text-center">
-    <h2>Budget Tracking For The Month Of <span th:text="${month}"></span></h2>
-</div>
-<div class="charts-container">
-    <div class="left" width="1000" height="1000">
-        <canvas id="myChart1" width="900" height="600"></canvas> <!-- First chart -->
-    </div>
-    <div class="right" width="1500" height="1500">
-        <canvas id="myChart2" width="900" height="600"></canvas>
-    </div>
-</div>
-<br>
 
-
-<div class="charts-container">
-    <div class="left" width="1000" height="1000">
-        <h5>
-            Your Rent Should Be No More Than $<span th:text="${rent}"></span><br>
-            Your Bills Should Be No More Than $<span th:text="${bills}"></span><br>
-            Your Transport Costs Should Be No More Than $<span th:text="${transport}"></span><br>
-            Your Food Expenses Should Be No More Than $<span th:text="${food}"></span><br>
-            Your Miscellaneous Expenses Should Be No More Than $<span th:text="${misc}"></span><br>
-            Your Savings Should Be At Least $<span th:text="${savings}"></span><br>
-        </h5>
+<div class="content">
+    <div class="container text-center">
+        <h2>Budget Tracking For The Month Of <span th:text="${month}"></span></h2>
     </div>
-    <div class="right" width="1000" height="1000">
-        <h5>
-            Your Rent is $<span th:text="${rent1}"></span>, you are <span th:text="${rentdif}"></span> <span th:text="${rentdif1}"></span> budget.<br>
-            Your Bills are $<span th:text="${bills1}"></span>, you are <span th:text="${billsdif}"></span> <span th:text="${billsdif1}"></span> budget.<br>
-            Your Transport Costs are $<span th:text="${transport1}"></span>, you are <span th:text="${transportdif}"></span> <span th:text="${transportdif1}"></span> budget.<br>
-            Your Food Expenses are $<span th:text="${food1}"></span>, you are <span th:text="${fooddif}"></span> <span th:text="${fooddif1}"></span> budget.<br>
-            Your Miscellaneous Expenses are $<span th:text="${misc1}"></span>, you are <span th:text="${miscdif}"></span> <span th:text="${miscdif1}"></span> budget.<br>
-            Your Savings are $<span th:text="${savings1}"></span>, you are <span th:text="${savingsdif}"></span> <span th:text="${savingsdif1}"></span> budget.<br>
-        </h5>
+    <div class="charts-container">
+        <div class="container">
+            <canvas id="myChart1">></canvas>
+        </div>
+        <div class="container">
+            <canvas id="myChart2">></canvas>
+        </div>
+    </div>
+
+    <div class="charts-container">
+        <div class="container">
+            <h5>
+                Your Rent Should Be No More Than $<span th:text="${rent}"></span><br>
+                Your Bills Should Be No More Than $<span th:text="${bills}"></span><br>
+                Your Transport Costs Should Be No More Than $<span th:text="${transport}"></span><br>
+                Your Food Expenses Should Be No More Than $<span th:text="${food}"></span><br>
+                Your Miscellaneous Expenses Should Be No More Than $<span th:text="${misc}"></span><br>
+                Your Savings Should Be At Least $<span th:text="${savings}"></span><br>
+            </h5>
+        </div>
+        <div class="container">
+            <h5>
+                Your Rent is $<span th:text="${rent1}"></span>, you are <span th:text="${rentdif}"></span> <span th:text="${rentdif1}"></span> budget.<br>
+                Your Bills are $<span th:text="${bills1}"></span>, you are <span th:text="${billsdif}"></span> <span th:text="${billsdif1}"></span> budget.<br>
+                Your Transport Costs are $<span th:text="${transport1}"></span>, you are <span th:text="${transportdif}"></span> <span th:text="${transportdif1}"></span> budget.<br>
+                Your Food Expenses are $<span th:text="${food1}"></span>, you are <span th:text="${fooddif}"></span> <span th:text="${fooddif1}"></span> budget.<br>
+                Your Miscellaneous Expenses are $<span th:text="${misc1}"></span>, you are <span th:text="${miscdif}"></span> <span th:text="${miscdif1}"></span> budget.<br>
+                Your Savings are $<span th:text="${savings1}"></span>, you are <span th:text="${savingsdif}"></span> <span th:text="${savingsdif1}"></span> budget.<br>
+            </h5>
+        </div>
     </div>
 </div>
 
@@ -216,7 +204,6 @@
 <span id="misc1" th:misc1="${misc1}" style="display:none;"></span>
 <span id="savings1" th:savings1="${savings1}" style="display:none;"></span>
 
-
 <script>
     function createGradient(ctx, color1, color2) {
         var gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -225,22 +212,16 @@
         return gradient;
     }
 
-    function initChart(chartId) {
+    function initChart(chartId, dataElementIds) {
         var ctx = document.getElementById(chartId).getContext('2d');
+        var chartData = dataElementIds.map(id => parseFloat(document.getElementById(id).getAttribute(id)));
         var chart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: ['Rent', 'Bills', 'Transportation', 'Food', 'Misc', 'Savings'],
                 datasets: [{
                     label: 'Budget Distribution',
-                    data: [
-                        document.getElementById('rent').getAttribute('rent'),
-                        document.getElementById('bills').getAttribute('bills'),
-                        document.getElementById('transport').getAttribute('transport'),
-                        document.getElementById('food').getAttribute('food'),
-                        document.getElementById('misc').getAttribute('misc'),
-                        document.getElementById('savings').getAttribute('savings')
-                    ],
+                    data: chartData,
                     backgroundColor: [
                         createGradient(ctx, 'rgba(255, 99, 132, 0.5)', 'rgba(255, 99, 132, 0.8)'),
                         createGradient(ctx, 'rgba(54, 162, 235, 0.5)', 'rgba(54, 162, 235, 0.8)'),
@@ -268,7 +249,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Ideal Budget Distribution',
+                        text: chartId === 'myChart1' ? 'Ideal Budget Distribution' : 'Your Actual Spending',
                         font: {
                             size: 34,
                             weight: 'bold'
@@ -299,90 +280,8 @@
                 elements: {
                     arc: {
                         borderWidth: 2,
-                        borderColor: '#006747',
-                        hoverOffset: 70 // Enhanced hover effect
-                    }
-                }
-            }
-        });
-    }
-
-    function initChart1(chartId) {
-        var ctx = document.getElementById(chartId).getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Rent', 'Bills', 'Transportation', 'Food', 'Misc', 'Savings'],
-                datasets: [{
-                    label: 'Budget Distribution',
-                    data: [
-                        document.getElementById('rent1').getAttribute('rent1'),
-                        document.getElementById('bills1').getAttribute('bills1'),
-                        document.getElementById('transport1').getAttribute('transport1'),
-                        document.getElementById('food1').getAttribute('food1'),
-                        document.getElementById('misc1').getAttribute('misc1'),
-                        document.getElementById('savings1').getAttribute('savings1')
-                    ],
-                    backgroundColor: [
-                        createGradient(ctx, 'rgba(255, 99, 132, 0.5)', 'rgba(255, 99, 132, 0.8)'),
-                        createGradient(ctx, 'rgba(54, 162, 235, 0.5)', 'rgba(54, 162, 235, 0.8)'),
-                        createGradient(ctx, 'rgba(255, 206, 86, 0.5)', 'rgba(255, 206, 86, 0.8)'),
-                        createGradient(ctx, 'rgba(75, 192, 192, 0.5)', 'rgba(75, 192, 192, 0.8)'),
-                        createGradient(ctx, 'rgba(153, 102, 255, 0.5)', 'rgba(153, 102, 255, 0.8)'),
-                        createGradient(ctx, 'rgba(255, 159, 64, 0.5)', 'rgba(255, 159, 64, 0.8)')
-                    ],
-                    borderColor: 'rgba(255,255,255,1)',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                size: 14
-                            }
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Your Actual Spending',
-                        font: {
-                            size: 34,
-                            weight: 'bold'
-                        }
-                    },
-                    tooltip: {
-                        enabled: true,
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        bodyFont: {
-                            weight: 'bold',
-                            size: 16
-                        },
-                        padding: 16,
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += '$' + context.parsed; // Adjust if your data is not in percentages
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                },
-                elements: {
-                    arc: {
-                        borderWidth: 2,
-                        borderColor: '#fff',
-                        hoverOffset: 70 // Enhanced hover effect
+                        borderColor: chartId === 'myChart1' ? '#006747' : '#fff',
+                        hoverOffset: 35 // Enhanced hover effect
                     }
                 }
             }
@@ -390,15 +289,12 @@
     }
 
     // Initialize both charts
-    initChart('myChart1');
-    initChart1('myChart2');
+    initChart('myChart1', ['rent', 'bills', 'transport', 'food', 'misc', 'savings']);
+    initChart('myChart2', ['rent1', 'bills1', 'transport1', 'food1', 'misc1', 'savings1']);
 </script>
-
-
 
 </body>
 </html>
-
 
 
 <!--

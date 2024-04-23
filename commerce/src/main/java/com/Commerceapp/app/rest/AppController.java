@@ -98,20 +98,6 @@ public class AppController {
 		model.addAttribute("miscdif1", pie3[4]);
 		model.addAttribute("savingsdif1", pie3[5]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		return "budgeting";
 	}
 

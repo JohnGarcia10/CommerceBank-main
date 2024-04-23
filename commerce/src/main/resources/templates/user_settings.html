@@ -8,51 +8,92 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #FFFFFF;
-            <!--background-image: url('https://images.pexels.com/photos/7135017/pexels-photo-7135017.jpeg');
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the background image */-->
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/free-vector/green-curve-frame-template_53876-99025.jpg');
+            background-size: cover;
+            background-position: top;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-top: 100px; /* Adjust as needed */
+        }
+        .charts-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            /*padding: 5px;*/
+        }
         .container {
-            margin-top: 50px;
-            background-color: #F8FFF8;
-            padding: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin: 20px;
+            width: calc(50% - 40px); /* Adjust width */
+        }
+        .container.text-center {
+            background-color: #fff;
+            justify-content: center;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            position: relative;
+            margin: 20px auto; /* Center the container horizontally */
+            width: calc(50% - 40px); /* Adjust width */
         }
-        h1 {
-            color: #A3A502;
-            margin-bottom: 30px;
-        }
+
         h2 {
             color: #006747;
             margin-bottom: 30px;
         }
-        h3 {
+        h5 {
             color: #006747;
+            line-height: 1.5;
             margin-bottom: 30px;
-            margin: 20px 0
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
         }
         a {
-            color: #ff0000;
+            color: #FFFFFF;
             text-decoration: none;
             transition: color 0.3s ease;
         }
         a:hover, a:focus {
-            color: #ff0000;
+            color: #FFFFFF;
             text-decoration: underline;
         }
-        .top-left {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 3px;
+        h3 {
+            margin: 20px 0;
+        }
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        .logo-image {
+            max-width: 350px; /* Adjust based on your image's size */
+            height: auto;
+        }
+        .icon-image {
+            max-height: 50px; /* Adjust based on your image's size */
+            width: auto;
         }
         /* Navbar styling */
         .navbar {
-            background-color: #78BE20; /* Adjust the color to fit your brand */
+        //position: fixed;
+            background-color: rgba(255,255,255,0.50); /* Adjust the color to fit your brand */
             border-radius: 0;
         }
         .navbar-brand, .navbar-nav .nav-link {
@@ -62,91 +103,38 @@
             color: #FFFFFF;
         }
         nav a {
-            color: #FFFFFF !important;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
         nav li a {
-            color: #FFFFFF !important;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
         .nav-item {
-            color: #FFFFFF !important;
-        }
-
-        .logo-image {
-            max-width: 605px; /* Adjust based on your image's size */
-            height: auto;
-        }
-        .icon-image {
-            max-height: 70px; /* Adjust based on your image's size */
-            width: auto;
-        }
-        .zenith-balance-card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            width: 70%;
-            border-radius: 5px;
-            background-color: #F7FFF7;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .zenith-balance-card:hover {
-            box-shadow: 100px 100px 100px 100px rgba(0, 0, 0, 0.2);
-        }
-
-        .zenith-title {
-            color: #003443;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .zenith-balance {
-            color: #003443;
-            font-family: 'Arial', sans-serif;
-            margin: 10px 0;
-            font-size: 30px;
-        }
-
-        .zenith-balance-card1 {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            width: 70%;
-            border-radius: 5px;
-            background-color: #FFFFF3;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .zenith-title1 {
-            color: #006747;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .zenith-balance1 {
-            color: #006747;
-            font-family: 'Arial', sans-serif;
-            margin: 10px 0;
-            font-size: 30px;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
 
     </style>
 </head>
 <body>
+
+<div class="background-image"></div>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <form th:action="@{/dash_board}" method="get">
-            <a href="javascript:;" onclick="this.closest('form').submit();">
-                <img src="https://www.login-bank.org/wp-content/uploads/commerce-bank.png" alt="Commerce Bank Logo" class="icon-image" style="border: none; outline: none;">
-            </a>
-        </form>
+        <a class="navbar-brand" href="#"><img src="https://epicci.org/wp-content/uploads/2019/02/commerce-bank-logo-2x.png" alt="Commerce Bank Logo" class="icon-image" ></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/dash_board}"><b>Home</b></a>
+                    <a class="nav-link"  th:href="@{/dash_board}"><b>Home</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/transfer}"><b>Transfer Funds</b></a>
@@ -158,12 +146,16 @@
                     <a class="nav-link" th:href="@{/loan}"><b>Loan Manager</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/budget}"><b>Budgeting</b></a>
+                    <a class="nav-link" th:href="@{/dashboard}"><b>Budgeting</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}"><b>Sign Out</b></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 
 <div class="container text-center my-5">
     <img src="https://epicci.org/wp-content/uploads/2019/02/commerce-bank-logo-2x.png" alt="Commerce Bank Logo" class="logo-image" >
