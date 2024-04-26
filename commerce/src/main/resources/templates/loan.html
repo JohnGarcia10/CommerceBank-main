@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Loan</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Font+Name&display=swap">
+
 
     <style>
+
+        footer {
+            text-align:center;
+            background-color: #006747;
+            color: #fff;
+            padding: 20px;
+        }
+
+        main {
+            width: 90vw;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: calc(100vh - 211px - 58px);
+        }
 
 
 
@@ -15,11 +31,27 @@
             <!--background-image: url('https://images.pexels.com/photos/7135017/pexels-photo-7135017.jpeg');
             background-size: cover; /* Cover the entire page */
             background-position: center; /* Center the background image */-->
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             font-family: 'Font Name', sans-serif;
         }
 
-        .container {
-            width: 300px;
+       .container {
+            text-align: center;
+            width: 100%; /* Adjust width as needed */
+            max-width: 1200px; /* Adjust maximum width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 0 20px; /* Add padding to the container */
+            box-sizing: border-box; /* Include padding and border in the total width */
+        }
+
+      /*.container-left {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        } */
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
         }
 
         .dropdown {
@@ -35,6 +67,8 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            margin: 0 auto;
+
         }
 
         .dropdown-content {
@@ -64,6 +98,15 @@
         .dropdown:hover .dropbtn {
             background-color: #0056b3;
         }
+
+        .dropdown-wrapper {
+            display: inline-block;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px; /* Adjust margin as needed to create space between dropbtn and info-boxes */
+        }
+
+
         .mortgage-result {
             width: 100%;
             padding: 20px;
@@ -209,11 +252,68 @@
             font-family: 'Arial', sans-serif;
         }
 
+        .container-left {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 0;
+        }
+
         .zenith-balance1 {
             color: #006747;
             font-family: 'Arial', sans-serif;
             margin: 10px 0;
             font-size: 30px;
+        }
+
+        .info-box {
+            text-align: center;
+            margin-top: 20px; /* Increased space between info-boxes and dropdown */
+            margin-bottom: 50px; /* Increased space between info-boxes */
+            padding: 15px; /* Add padding for better spacing */
+            font-size: 18px; /* Increase font size */
+            font-family: Arial, sans-serif; /* Change font family to something nicer */
+            background-color: #f0f0f0; /* Add a background color for better contrast */
+            border-radius: 8px; /* Add rounded corners for a softer look */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+            transition: all 0.3s ease; /* Add a smooth transition effect */
+        }
+
+
+        .info-box:hover {
+            transform: translateY(-5px); /* Add a slight upward hover effect */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Increase shadow on hover */
+        }
+        .mortgage-title {
+            display: inline-flex;
+            align-items: center; /* Aligns image and text vertically */
+        }
+
+        .mortgage-title img {
+            width: 1.3em;
+            height: 1.3em;
+            margin-right: 5px;
+        }
+
+        .auto-title {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .auto-title img {
+            width: 2.0em;
+            height: 2.0em;
+            margin-right: 5px;
+        }
+
+        .student-title {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .student-title img {
+            width: 2.0em;
+            height: 2.0em;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -251,15 +351,43 @@
     </div>
 </nav>
 
+
+    <div class="info-box" id="mortgageInfoBox">
+        <b class="mortgage-title"><img src="https://png.pngtree.com/png-vector/20221108/ourmid/pngtree-cartoon-house-illustration-png-image_6434928.png" alt="House Icon"> MORTGAGE</b><br>
+        A mortgage loan is a financial product designed to help individuals purchase homes. It involves borrowing money from a lender to cover the cost of a property, with repayment typically spread over 15 to 30 years. The loan amount is determined by factors such as the home price and down payment, while the interest rate, based on factors like credit score and market conditions, determines the cost of borrowing. Monthly mortgage payments consist of both principal (the borrowed amount) and interest.
+        For example, a $300,000 home with a 20% down payment of $60,000 and a 30-year fixed-rate mortgage at 4% interest would result in monthly payments calculated based on these factors.
+    </div>
+
+    <div class="info-box" id="autoInfoBox">
+        <b class="auto-title"><img src="https://png.pngtree.com/png-clipart/20190604/original/pngtree-car-sets-png-image_1291357.jpg" alt="Auto Icon"> AUTO</b><br>
+        An auto loan is a financing option that assists individuals in purchasing vehicles.
+        It involves borrowing money from a lender, typically repaid over 3 to 7 years. The loan amount, influenced by factors like the vehicle's price and trade-in value, is subject to an interest rate determined by creditworthiness and market conditions. Monthly payments encompass both principal and interest, with additional costs like sales tax and fees included.
+        This makes vehicle ownership accessible over time, with considerations for trade-in value, down payment, and sales tax rate factored into the overall financing equation.
+
+    </div>
+    <div class="info-box" id="studentInfoBox">
+        <!-- Content related to student loan will be displayed here -->
+        <b class="student-title"><img src="https://png.pngtree.com/element_our/20190602/ourmid/pngtree-stacking-cartoon-books-image_1420721.jpg" alt="Stud Icon"> STUDENT</b><br>
+        A student loan is a financial tool that assists individuals in funding their education. It involves borrowing money from a lender,
+        typically repaid after leaving school. The loan amount, term, and interest rate vary based on factors such as the borrower's financial need and creditworthiness.
+        Repayment plans may span over several years, with monthly payments covering both principal and interest.
+        This makes higher education accessible, with considerations for loan amount, term, and interest rate shaping the overall financing arrangement.
+
+    </div>
+</div>
+
 <div class="container">
-    <div class="dropdown">
-        <button class="dropbtn">Select a Loan Type</button>
-        <div class="dropdown-content">
-            <a href="#" onclick="showMortgageForm()">Mortgage Loan</a>
-            <a href="#" onclick="showAutoForm()" >Auto Loan</a>
-            <a href="#" onclick="showStudentLoanForm()">Student Loan</a>
+    <div class="dropdown-wrapper">
+        <div class="dropdown">
+            <button class="dropbtn">Select a Loan Type</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="showMortgageForm()">Mortgage Loan</a>
+                <a href="#" onclick="showAutoForm()">Auto Loan</a>
+                <a href="#" onclick="showStudentLoanForm()">Student Loan</a>
+            </div>
         </div>
     </div>
+
 
     <div id="mortgageForm" style="display: none;">
         <div class="form-group">
@@ -334,7 +462,12 @@
         <div id="autoLoanResult"></div>
     </div>
 
+
 </div>
+
+<footer>
+    <p>MADE BY: JONATHAN </p>
+</footer>
 
 <script>
     function showMortgageForm() {

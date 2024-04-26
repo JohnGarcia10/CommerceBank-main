@@ -11,6 +11,7 @@
             color: #333;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         .container {
             margin-top: 50px;
             background-color: #ffffff;
@@ -26,6 +27,7 @@
         h2 {
             color: #006747;
             margin-bottom: 30px;
+            font-size: 30px
         }
         p {
             color: #006747;
@@ -85,6 +87,12 @@
         #signInButton:hover {
             opacity: 0.8; /* Optional: Adds a hover effect to make the button slightly transparent on hover */
         }
+
+       .label-bold {
+            font-weight: bold;
+            font-size: 20px; /* Adjust the size according to your preference */
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -117,19 +125,20 @@
 <div class="container text-center">
     <div>
         <img src="https://www.commercebank.com/-/media/cb/images/about-us/mediakit-logos/2017cbcagreen342with368stackednofdic.png?revision=5f97da38-1cec-40e1-8ec7-979d3e823f14&modified=20220506162907" alt="Commerce Bank Logo" class="login-image"></br>
-        <h2>Customer Login</h2>
+        <h2><b>Customer Login</b></h2>
     </div>
     <form th:action="@{/login}" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-4 col-form-label">E-mail </label>
+                <label class="col-4 col-form-label label-bold">E-mail:</label>
                 <div class="col-8">
                     <input type="email" th:field="*{email}" class="form-control" required />
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
+                <label class="col-4 col-form-label label-bold">Password:</label>
+
                 <div class="col-8">
                     <input type="password" th:field="*{password}" class="form-control"
                            required minlength="6" maxlength="30"/>
@@ -144,9 +153,8 @@
     </form>
     <div>
         <p><a th:href="@{/forgot_pass}">Forgot Password?</a></p>
-
     </div>
-</div>
+    
 </body>
 </html>
 

@@ -14,6 +14,14 @@
             background-position: top;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        footer {
+            text-align:center;
+            background-color: #006747;
+            color: #fff;
+            padding: 20px;
+        }
+
         .container {
             margin-top: 50px;
             background-color: #ffffff;
@@ -78,6 +86,29 @@
             font: courier !important;
 
         }
+
+        .login-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+
     </style>
 </head>
 <body>
@@ -107,8 +138,49 @@
     </div>
 </nav>
 
-<div class="container text-center">
-        <img src="https://epicci.org/wp-content/uploads/2019/02/commerce-bank-logo-2x.png" alt="Commerce Bank Logo" class="logo-image" >
+<div class="additional-container">
+    <div class="additional-content">
+        <h3>Additional Content</h3>
+        <p>This is some additional content that you can include outside the main container.</p>
+    </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center">Welcome to Commerce Bank</h2>
+            <p class="text-center">Welcome to Commerce Bank, your gateway to financial empowerment.
+                At Commerce Bank, we understand that managing your finances is more than just transactions—it's about achieving your goals. With our cutting-edge online banking platform, you have the power to control your finances anytime, anywhere.
+                From transferring funds to calculating loans, our intuitive interface puts convenience at your fingertips. Take charge of your financial future with our robust budgeting features, helping you track expenses, set savings goals, and plan for the future with confidence.
+                Whether you're a seasoned investor or just starting your financial journey, Commerce Bank is here to support you every step of the way.</p>
+
+            <img src="https://p7.hiclipart.com/preview/184/729/165/stock-bank-money-finance-business-successful-business-people.jpg" alt="Stock Image" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <div class="login-box">
+                <h2 class="text-center">Login</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <div class="text-center mt-2">
+                    <a href="#" class="forgot-password" style="color: green;">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>MADE BY: JONATHAN </p>
+</footer>
+
 </body>
 </html>
