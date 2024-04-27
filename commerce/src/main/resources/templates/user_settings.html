@@ -6,11 +6,21 @@
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover, a:focus {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Font Name', sans-serif;
+            padding-top: 100px; /* Adjust as needed */
         }
         .background-image {
             position: fixed;
@@ -23,6 +33,10 @@
             background-position: top;
             z-index: -1;
         }
+        canvas {
+             width: 100% !important;
+             height: auto !important;
+         }
         .content {
             position: relative;
             z-index: 1;
@@ -52,32 +66,29 @@
             margin: 20px auto; /* Center the container horizontally */
             width: calc(50% - 40px); /* Adjust width */
         }
-
+        footer {
+            text-align: right;
+            background-color: rgba(255,255,255,0.75);
+            color: #000000;
+            padding: 20px;
+            margin-top: auto;
+        }
         h2 {
             color: #006747;
             margin-bottom: 30px;
+        }
+        h3 {
+            margin: 20px 0;
         }
         h5 {
             color: #006747;
             line-height: 1.5;
             margin-bottom: 30px;
         }
-        canvas {
-            width: 100% !important;
-            height: auto !important;
-        }
-        a {
-            color: #FFFFFF;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover, a:focus {
-            color: #FFFFFF;
-            text-decoration: underline;
-        }
-        h3 {
-            margin: 20px 0;
-        }
+        .icon-image {
+             max-height: 50px; /* Adjust based on your image's size */
+             width: auto;
+         }
         .logo-container {
             margin-bottom: 30px;
         }
@@ -85,15 +96,15 @@
             max-width: 350px; /* Adjust based on your image's size */
             height: auto;
         }
-        .icon-image {
-            max-height: 50px; /* Adjust based on your image's size */
-            width: auto;
-        }
+
         /* Navbar styling */
         .navbar {
-        //position: fixed;
-            background-color: rgba(255,255,255,0.50); /* Adjust the color to fit your brand */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.75);
             border-radius: 0;
+            z-index: 1000; /* Ensure navbar stays above other content */
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #FFFFFF;
@@ -111,6 +122,11 @@
             font-size: 20px !important;
             font: courier !important;
         }
+        nav li button{
+            color: #000000 !important;
+            font-size: 20px !important;
+            font: courier !important;
+        }
         .nav-item {
             color: #000000 !important;
             font-size: 20px !important;
@@ -119,7 +135,7 @@
 
     </style>
 </head>
-<body>
+
 
 <div class="background-image"></div>
 
@@ -145,16 +161,19 @@
                     <a class="nav-link" th:href="@{/loan}"><b>Loan Manager</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/dashboard}"><b>Budgeting</b></a>
+                    <a class="nav-link" th:href="@{/budget}"><b>Budgeting</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/logout}"><b>Sign Out</b></a>
+                    <form th:action="@{/logout}" method="post" >
+                        <button type="submit" class="nav-link" style="background: none; border: none; padding: 8px; font: inherit; cursor: pointer;"><b>Sign Out</b></button>
+                    </form>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
+<body>
 
 <div class="container text-center my-5">
 
@@ -248,9 +267,9 @@
 
 </div>
 
-
-
-
+<footer>
+    <p>Created By: Alyssa Lopez, Jonathan Garcia, Abel Abebe, Mustafa Shahzad </p>
+</footer>
 
 <script>
     document.getElementById("signInButton").addEventListener("click", function(event) {
