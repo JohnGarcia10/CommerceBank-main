@@ -7,9 +7,32 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #F2FFF2;
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Font Name', sans-serif;
+            padding-top: 100px; /* Adjust as needed */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+                footer {
+            text-align: right;
+            background-color: rgba(255,255,255,0.75);
+            color: #000000;
+            padding: 20px;
+            margin-top: auto;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://t4.ftcdn.net/jpg/07/03/80/39/360_F_703803915_lCTLu5geWkfuIVOv5DyYV6V2l7WGJvDY.jpg');
+            background-size: cover;
+            background-position: top;
+            z-index: -1;
         }
         .container {
             margin-top: 50px;
@@ -33,14 +56,38 @@
         }
         /* Navbar styling */
         .navbar {
-            background-color: #006747; /* Adjust the color to fit your brand */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.85);
             border-radius: 0;
+            z-index: 1000; /* Ensure navbar stays above other content */
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #FFFFFF;
         }
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #FFFFFF;
+       .navbar-brand:hover, .navbar-nav .nav-link:hover {
+           color: #a3bd8c !important;
+       }
+        nav a {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
+        }
+        nav li a {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
+        }
+        nav li button{
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
+        }
+        .nav-item {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
         .icon-image {
             max-height: 70px; /* Adjust based on your image's size */
@@ -66,6 +113,8 @@
     </style>
 </head>
 <body>
+<div class="background-image"></div>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
@@ -152,6 +201,11 @@
 
     </div>
 </div>
-
+<br>
+<br>
+<br>
+<footer>
+    <p>Created By: Alyssa Lopez, Jonathan Garcia, Abel Abebe, Mustafa Shahzad </p>
+</footer>
 </body>
 </html>

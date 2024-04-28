@@ -7,65 +7,114 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #F2FFF2;
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Font Name', sans-serif;
+            padding-top: 100px; /* Adjust as needed */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .container {
-            margin-top: 50px;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            position: relative;
+                footer {
+            text-align: right;
+            background-color: rgba(255,255,255,0.75);
+            color: #000000;
+            padding: 20px;
+            margin-top: auto;
         }
-        h1 {
-            color: #006747;
-            margin-bottom: 30px;
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://t4.ftcdn.net/jpg/07/03/80/39/360_F_703803915_lCTLu5geWkfuIVOv5DyYV6V2l7WGJvDY.jpg');
+            background-size: cover;
+            background-position: top;
+            z-index: -1;
         }
-        h2 {
-            color: #006747;
-            margin-bottom: 30px;
-        }
-        h5 {
-            color: #FF0000;
-            margin-bottom: 30px;
-        }
-        /* Navbar styling */
+       .container {
+           margin-top: 50px;
+           background-color: #ffffff;
+           padding: 40px;
+           border-radius: 10px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+           position: relative;
+       }
+       h1 {
+           color: #006747;
+           margin-bottom: 30px;
+       }
+       h2 {
+           color: #006747;
+           margin-bottom: 30px;
+       }
+       h5 {
+           color: #FF0000;
+           margin-bottom: 30px;
+       }
+       /* Navbar styling */
         .navbar {
-            background-color: #006747; /* Adjust the color to fit your brand */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.85);
             border-radius: 0;
+            z-index: 1000; /* Ensure navbar stays above other content */
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #FFFFFF;
         }
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #FFFFFF;
+       .navbar-brand:hover, .navbar-nav .nav-link:hover {
+           color: #a3bd8c !important;
+       }
+        nav a {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
-        .icon-image {
-            max-height: 70px; /* Adjust based on your image's size */
-            width: auto;
+        nav li a {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
-        #signInButton {
-            background-color: #006747; /* Dark green background */
-            color: #FFFFFF; /* White text */
-            border: none; /* Removes the default border */
-            padding: 10px 20px; /* Adds some padding for better appearance */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px; /* Optional: Adds rounded corners */
+        nav li button{
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
+        .nav-item {
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
+        }
+       .icon-image {
+           max-height: 70px; /* Adjust based on your image's size */
+           width: auto;
+       }
+       #signInButton {
+           background-color: #006747; /* Dark green background */
+           color: #FFFFFF; /* White text */
+           border: none; /* Removes the default border */
+           padding: 10px 20px; /* Adds some padding for better appearance */
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 16px;
+           margin: 4px 2px;
+           cursor: pointer;
+           border-radius: 5px; /* Optional: Adds rounded corners */
+       }
 
-        #signInButton:hover {
-            opacity: 0.8; /* Optional: Adds a hover effect to make the button slightly transparent on hover */
-        }
+       #signInButton:hover {
+           opacity: 0.8; /* Optional: Adds a hover effect to make the button slightly transparent on hover */
+       }
     </style>
 </head>
 <body>
+<div class="background-image"></div>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
@@ -152,6 +201,11 @@
 
     </div>
 </div>
-
+<br>
+<br>
+<br>
+<footer>
+    <p>Created By: Alyssa Lopez, Jonathan Garcia, Abel Abebe, Mustafa Shahzad </p>
+</footer>
 </body>
 </html>

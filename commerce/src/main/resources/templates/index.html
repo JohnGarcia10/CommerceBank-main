@@ -7,112 +7,152 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #F2FFF2;
-            color: #333;
-            background-image: url('https://img.freepik.com/free-vector/green-curve-frame-template_53876-99025.jpg');
-            background-size: cover; /* Cover the entire page */
-            background-position: top;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Font Name', sans-serif;
+            padding-top: 100px; /* Adjust as needed */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-
-        footer {
-            text-align:center;
-            background-color: rgba(255,255,255,0.50);
-            color: #006747;
+         footer {
+            text-align: right;
+            background-color: rgba(255,255,255,0.75);
+            color: #000000;
             padding: 20px;
+            margin-top: auto;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://t4.ftcdn.net/jpg/07/03/80/39/360_F_703803915_lCTLu5geWkfuIVOv5DyYV6V2l7WGJvDY.jpg');
+            background-size: cover;
+            background-position: top;
+            z-index: -1;
         }
 
-        .container {
-            margin-top: 50px;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            position: relative;
-        }
-        h1 {
-            color: #0056b3;
+
+
+       .container {
+           margin-top: 50px;
+           background-color: #ffffff;
+           padding: 40px;
+           border-radius: 10px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+           position: relative;
+       }
+       h1 {
+           color: #0056b3;
+           margin-bottom: 30px;
+       }
+       a {
+           color: #006747;
+           text-decoration: none;
+           transition: color 0.3s ease;
+           text-align: center;
+
+       }
+       a:hover, a:focus {
+           color: #006747;
+           text-decoration: underline;
+       }
+       h3 {
+           margin: 20px 0;
+       }
+       h6 {
+            color: #615c59;
             margin-bottom: 30px;
+            font-size: 65px;
+            font-family: Copperplate, Papyrus, fantasy;
         }
-        a {
-            color: #FFFFFF;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover, a:focus {
-            color: #FFFFFF;
-            text-decoration: underline;
-        }
-        h3 {
-            margin: 20px 0;
-        }
-        .logo-container {
-            margin-bottom: 30px;
-        }
-        .logo-image {
-            max-width: 350px; /* Adjust based on your image's size */
-            height: auto;
-        }
-        .icon-image {
-            max-height: 70px; /* Adjust based on your image's size */
-            width: auto;
-        }
-        /* Navbar styling */
+       .logo-container {
+           margin-bottom: 30px;
+       }
+       .logo-image {
+           max-width: 350px; /* Adjust based on your image's size */
+           height: auto;
+       }
+       .icon-image {
+           max-height: 70px; /* Adjust based on your image's size */
+           width: auto;
+       }
+       /* Navbar styling */
         .navbar {
-            background-color: rgba(255,255,255,0.50); /* Adjust the color to fit your brand */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.85);
             border-radius: 0;
+            z-index: 1000; /* Ensure navbar stays above other content */
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #FFFFFF;
         }
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #FFFFFF !important;
-        }
-         nav a {
-            color: #000000 !important;
+       .navbar-brand:hover, .navbar-nav .nav-link:hover {
+           color: #a3bd8c !important;
+       }
+        nav a {
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
         }
         nav li a {
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
-
-
+        }
+        nav li button{
+            color: #006747 !important;
+            font-size: 20px !important;
+            font: courier !important;
         }
         .nav-item {
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
-
         }
 
-        .login-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+       .login-box {
+           background-color: #f9f9f9;
+           padding: 20px;
+           border-radius: 5px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           margin-top: 80px;
+       }
+
+       .login-box h2 {
+           margin-bottom: 20px;
+       }
+
+       .form-group {
+           margin-bottom: 20px;
+       }
+
+        .button {
+            text-align: center;
         }
 
-        .login-box h2 {
-            margin-bottom: 20px;
+        h7 {
+            text-align: center;
+            font-size: 25px;
+            color: #006747;
         }
-
-        .form-group {
-            margin-bottom: 20px;
+        h8 {
+            text-align: center;
+            font-size: 20px;
+            color: #006747;
         }
-
-        .forgot-password {
-            display: block;
-            margin-top: 10px;
-            text-align: right;
-        }
-
 
     </style>
 </head>
-<body>
-<!-- Navbar -->
+<div class="background-image"></div>
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="https://epicci.org/wp-content/uploads/2019/02/commerce-bank-logo-2x.png" alt="Commerce Bank Logo" class="logo-image" ></a>
@@ -138,46 +178,61 @@
     </div>
 </nav>
 
-<div class="hero">
 
-</div>
+<body>
+<!-- Navbar -->
+
+<br>
+<h6 class="text-center"><strong>Welcome to Commerce Bank</strong> </h6>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-center">Welcome to Commerce Bank</h2>
-            <p class="text-center">Welcome to Commerce Bank, your gateway to financial empowerment.
-                At Commerce Bank, we understand that managing your finances is more than just transactions—it's about achieving your goals. With our cutting-edge online banking platform, you have the power to control your finances anytime, anywhere.
-                From transferring funds to calculating loans, our intuitive interface puts convenience at your fingertips. Take charge of your financial future with our robust budgeting features, helping you track expenses, set savings goals, and plan for the future with confidence.
-                Whether you're a seasoned investor or just starting your financial journey, Commerce Bank is here to support you every step of the way.</p>
-
-            <img src="https://p7.hiclipart.com/preview/184/729/165/stock-bank-money-finance-business-successful-business-people.jpg" alt="Stock Image" class="img-fluid">
+        <div class="col-md-6 text-center">
+            <h7><strong>Your gateway to financial empowerment.</strong> <br> <br></h7>
+            <h8>At Commerce Bank, we understand that managing your finances is more than just transactions. With our cutting-edge online banking platform, you have the power to control your finances anytime, anywhere. <br>
+                From transferring funds to calculating loans, our intuitive interface puts convenience at your fingertips. Take charge of your financial future with our robust budgeting features, helping you track expenses, set savings goals, and plan for the future with confidence. <br>
+                Whether you're a seasoned investor or just starting your financial journey, Commerce Bank is here to support you every step of the way.</h8>
         </div>
         <div class="col-md-6">
             <div class="login-box">
                 <h2 class="text-center">Login</h2>
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <label for="username">Email</label>
-                        <input type="text" id="username" name="username" class="form-control" required>
+                <form th:action="@{/login}" th:object="${user}"
+                      method="post" style="max-width: 600px; margin: 0 auto;">
+                    <div class="m-3">
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label label-bold">E-mail:</label>
+                            <div class="col-8">
+                                <input type="email" th:field="*{email}" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label label-bold">Password:</label>
+
+                            <div class="col-8">
+                                <input type="password" th:field="*{password}" class="form-control"
+                                       required minlength="6" maxlength="30"/>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="signInButton">Sign In</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>
-                <div class="text-center mt-2">
-                    <a href="#" class="forgot-password" style="color: green;">Forgot Password?</a>
+                <div class="text-center">
+                    <p><a th:href="@{/forgot_pass}">Forgot Password?</a></p>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <img src="https://pbs.twimg.com/media/GJnrHtGXYAAWQTg?format=jpg&name=medium" alt="Stock Image" class="img-fluid">
 </div>
-
+<br>
+<br>
+<br>
 <footer>
-    <p>MADE BY: JONATHAN </p>
+    <p>Created By: Alyssa Lopez, Jonathan Garcia, Abel Abebe, Mustafa Shahzad </p>
 </footer>
-
 </body>
 </html>

@@ -22,14 +22,56 @@ public class TransactionsRepositoryTests {
     private TestEntityManager entityManager;
 
     @Test
-    public void testCreateTransaction() {
+    public void testCreateIncome() {
         Transactions transaction = new Transactions();
-        transaction.setFromSource("7527312321");
-        transaction.setToSource("Old Town Lofts");
-        transaction.setAmount(1000);
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("Google");
+        transaction.setAmount(5000);
         transaction.setTransaction_date();
         transaction.setRefNum();
-        transaction.setTypeOf("Property Mangement:");
+        transaction.setTypeOf("Employer:");
+        transaction.setCategory("Direct Deposit");
+        transaction.setPlusorminus("+$");
+        repo.save(transaction);
+        Transactions savedTransaction = repo.save(transaction);
+
+        Transactions existTransaction = entityManager.find(Transactions.class, savedTransaction.getId());
+
+        assertThat(existTransaction.getFromSource()).isEqualTo(transaction.getFromSource());
+
+
+    }
+
+    @Test
+    public void testCreateMisc() {
+        Transactions transaction = new Transactions();
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("H&R Block");
+        transaction.setAmount(50);
+        transaction.setTransaction_date();
+        transaction.setRefNum();
+        transaction.setTypeOf("Merchant:");
+        transaction.setCategory("Misc");
+        transaction.setPlusorminus("-$");
+        repo.save(transaction);
+        Transactions savedTransaction = repo.save(transaction);
+
+        Transactions existTransaction = entityManager.find(Transactions.class, savedTransaction.getId());
+
+        assertThat(existTransaction.getFromSource()).isEqualTo(transaction.getFromSource());
+
+
+    }
+
+    @Test
+    public void testCreateRent() {
+        Transactions transaction = new Transactions();
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("Old Town Lofts");
+        transaction.setAmount(2100);
+        transaction.setTransaction_date();
+        transaction.setRefNum();
+        transaction.setTypeOf("Merchant:");
         transaction.setCategory("Rent");
         transaction.setPlusorminus("-$");
         repo.save(transaction);
@@ -41,5 +83,70 @@ public class TransactionsRepositoryTests {
 
 
     }
+
+    @Test
+    public void testCreateFood() {
+        Transactions transaction = new Transactions();
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("Starbucks");
+        transaction.setAmount(25);
+        transaction.setTransaction_date();
+        transaction.setRefNum();
+        transaction.setTypeOf("Merchant:");
+        transaction.setCategory("Foods");
+        transaction.setPlusorminus("-$");
+        repo.save(transaction);
+        Transactions savedTransaction = repo.save(transaction);
+
+        Transactions existTransaction = entityManager.find(Transactions.class, savedTransaction.getId());
+
+        assertThat(existTransaction.getFromSource()).isEqualTo(transaction.getFromSource());
+
+
+    }
+
+    @Test
+    public void testCreateTransport() {
+        Transactions transaction = new Transactions();
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("Jiffy Lube");
+        transaction.setAmount(85);
+        transaction.setTransaction_date();
+        transaction.setRefNum();
+        transaction.setTypeOf("Merchant:");
+        transaction.setCategory("Transport");
+        transaction.setPlusorminus("-$");
+        repo.save(transaction);
+        Transactions savedTransaction = repo.save(transaction);
+
+        Transactions existTransaction = entityManager.find(Transactions.class, savedTransaction.getId());
+
+        assertThat(existTransaction.getFromSource()).isEqualTo(transaction.getFromSource());
+
+
+    }
+
+    @Test
+    public void testCreateBills() {
+        Transactions transaction = new Transactions();
+        transaction.setFromSource("3265716350");
+        transaction.setToSource("Netflix");
+        transaction.setAmount(30);
+        transaction.setTransaction_date();
+        transaction.setRefNum();
+        transaction.setTypeOf("Merchant:");
+        transaction.setCategory("Bills");
+        transaction.setPlusorminus("-$");
+        repo.save(transaction);
+        Transactions savedTransaction = repo.save(transaction);
+
+        Transactions existTransaction = entityManager.find(Transactions.class, savedTransaction.getId());
+
+        assertThat(existTransaction.getFromSource()).isEqualTo(transaction.getFromSource());
+
+
+    }
+
+
 
 }

@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
+import java.util.*;
+
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.List;
-import java.util.Objects;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,7 +38,16 @@ public class AppController {
 
 
 	@GetMapping("/")
-	public String viewHomePage() {
+	public String viewHomePage(@RequestParam(value = "error", required = false) String error,
+							   @RequestParam(value = "logout", required = false) String logout, Model model) {
+		model.addAttribute("user", new User());
+		if (error != null) {
+			model.addAttribute("error", "Your username and password are invalid.");
+			return "login-failed";
+		}
+		if (logout != null) {
+			model.addAttribute("message", "You have been logged out successfully.");
+		}
 		return "index";
 
 	}
@@ -218,6 +229,30 @@ public class AppController {
 		return "user_settings";
 	}
 
+	@GetMapping("/settings_error")
+	public String showUserSettingsError(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+		// Assuming you have a method to get the updated user details
+		User user = repo.findByEmail(currentUser.getUsername());
+		model.addAttribute("user", user);
+		double monthly_income = userService.getMatchingAmounts(user.getAccountNum());
+
+		String fullName = user.getFirstName() + " " + user.getLastName();
+		String address = user.getAddress();
+		double user_balance = user.getBalance();
+		BigDecimal bankbalance = BigDecimal.valueOf(user_balance).setScale(2, RoundingMode.HALF_UP);
+
+		model.addAttribute("fullName", fullName);
+		model.addAttribute("dob", user.getDob());
+		model.addAttribute("email", user.getEmail());
+		model.addAttribute("address", address);
+		model.addAttribute("accountNum", user.getAccountNum());
+		model.addAttribute("balance", bankbalance);
+		model.addAttribute("income", monthly_income);
+
+
+		return "user_settings_error";
+	}
+
 	@PostMapping("/process_change")
 	public String processChange(@RequestParam("accountNum") String accountNum,
 								@RequestParam("firstName") String firstName,
@@ -233,7 +268,7 @@ public class AppController {
 		boolean success = userService.quickCheck2(accountNum, password);
 		if(toUser != null) {
 			if (success) {
-				if (newPassword != null) {
+				if (newPassword.length() >= 6) {
 					BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 					String encodedPassword = encoder.encode(newPassword);
 					toUser.setPassword(encodedPassword);
@@ -245,9 +280,17 @@ public class AppController {
 				toUser.setAddress(address);
 				repo.save(toUser);
 			}
+			else{
+				return "redirect:/settings_error";
+			}
 
 		}
-		return "redirect:/dashboard";
+		return "redirect:/settings";
+	}
+
+	@GetMapping("/user__settings")
+	public String refreshUserInfoSettings() {
+		return "redirect:/settings";
 	}
 
 
@@ -258,8 +301,10 @@ public class AppController {
 		// Assuming you have a method to get the updated user details
 		User user = repo.findByEmail(currentUser.getUsername());
 		List<Transactions> transactions = repository.findByFromSource(user.getAccountNum());
+		List<Transactions> transactionsCopy = new ArrayList<>(transactions); // Shallow copy
+		Collections.reverse(transactionsCopy);
 		model.addAttribute("transactions", transactions);
-		model.addAttribute("user", user);
+		model.addAttribute("transactions2", transactionsCopy);
 		double monthly_income = userService.getMatchingAmounts(user.getAccountNum());
 
 		String fullName = user.getFirstName() + " " + user.getLastName();

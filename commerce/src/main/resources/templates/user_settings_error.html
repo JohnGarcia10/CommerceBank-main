@@ -40,27 +40,25 @@
              width: 100% !important;
              height: auto !important;
          }
-        .content {
-            position: relative;
-            z-index: 1;
-            padding-top: 100px; /* Adjust as needed */
-             overflow: hidden;
-
-        }
         .collapsible {
-          background-color: #F1FFF1;
-          color: black;
+          background-color: #777;
+          color: white;
           cursor: pointer;
           padding: 18px;
           width: 100%;
           border: none;
-          text-align: center;
+          text-align: left;
           outline: none;
           font-size: 15px;
         }
 
         .active, .collapsible:hover {
-            background-color: #FFFFFF;
+          background-color: #555;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-top: 100px; /* Adjust as needed */
         }
         .charts-container {
             display: flex;
@@ -220,74 +218,79 @@
                 <b>Monthly Income: </b><span th:text="${income}"></span><br><br>
             </p>
         </div>
+        <div style="background-color: #FFE7E7;">
+            <strong><p>INVALID CREDENTIALS: TRY AGAIN</p></strong>
+        </div>
 
         <div class="m-3">
-            <button type="button" class="collapsible"><strong> Edit Settings</strong></button>
-            <div class="content">
-                <input type="hidden" name="email" th:value="${email}" />
-
-
-                <input type="hidden" name="accountNum" th:value="${accountNum}" />
-
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">Current Password*: </label>
-                    <div class="col-8">
-                        <input type="password" th:field="*{password}" class="form-control"
-                               required minlength="6" maxlength="30"/>
-                    </div>
+            <!--<div class="form-group row">
+                <label class="col-4 col-form-label">E-mail </label>
+                <div class="col-8">
+                    <input type="email" th:field="*{email}" class="form-control" required   />
                 </div>
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">New Password: </label>
-                    <div class="col-8">
-                        <input type="password" name="newPassword" id="newPassword" class="form-control" minlength="6" maxlength="30"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">Confirm New Password: </label>
-                    <div class="col-8">
-                        <input type="password" id="confirmPassword" class="form-control"
-                               minlength="6" maxlength="30"/>
-                        <small id="passwordMismatch" class="text-danger d-none">Passwords do not match!</small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">First Name: </label>
-                    <div class="col-8">
-                        <input type="text" th:field="*{firstName}" class="form-control"
-                               required minlength="2" maxlength="20" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">Last Name: </label>
-                    <div class="col-8">
-                        <input type="text" th:field="*{lastName}" class="form-control"
-                               required minlength="2" maxlength="20" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">Phone Number: </label>
-                    <div class="col-8">
-                        <input type="text" th:field="*{phoneNum}" class="form-control"
-                               required minlength="10" maxlength="10"/>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-4 col-form-label">Street Address: </label>
-                    <div class="col-8">
-                        <input type="text" th:field="*{address}" class="form-control"
-                               required minlength="2" maxlength="20"/>
-                    </div>
-                </div>
+            </div>-->
+            <input type="hidden" name="email" th:value="${email}" />
 
 
-                <div>
-                    <button type="submit" id="signInButton">Save Changes</button>
+            <input type="hidden" name="accountNum" th:value="${accountNum}" />
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">* Current Password*: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{password}" class="form-control"
+                           required minlength="6" maxlength="30"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">New Password: </label>
+                <div class="col-8">
+                    <input type="password" name="newPassword" id="newPassword" class="form-control" minlength="6" maxlength="30"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Confirm New Password: </label>
+                <div class="col-8">
+                    <input type="password" id="confirmPassword" class="form-control"
+                           minlength="6" maxlength="30"/>
+                    <small id="passwordMismatch" class="text-danger d-none">Passwords do not match!</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">First Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{firstName}" class="form-control"
+                           required minlength="2" maxlength="20" />
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Last Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{lastName}" class="form-control"
+                           required minlength="2" maxlength="20" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Phone Number: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{phoneNum}" class="form-control"
+                           required minlength="10" maxlength="10"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Street Address: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{address}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+
+            <div>
+                <button type="submit" id="signInButton">Save Changes</button>
+            </div>
         </div>
     </form>
 
@@ -296,22 +299,6 @@
 
 
 <script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-
-      coll[i].nextElementSibling.style.display = 'none';
-    }
     document.getElementById("signInButton").addEventListener("click", function(event) {
         var password = document.getElementById("newPassword").value;
         var confirmPassword = document.getElementById("confirmPassword").value;

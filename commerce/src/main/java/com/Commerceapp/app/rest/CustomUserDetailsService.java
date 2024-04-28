@@ -180,8 +180,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         pie[0] = rent - rent1;  // 40%
         pie[1] = bills - bills1;  // 10%
         pie[2] = transport - transport1; // 5%
-        pie[3] = misc - misc1; // 15%
-        pie[4] = food - food1;  // 10% again
+        pie[3] = food - food1;
+        pie[4] = misc - misc1; // 15%// 10% again
         pie[5] = savings - savings1;  // 20%
         return pie;
     }

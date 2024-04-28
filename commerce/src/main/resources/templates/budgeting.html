@@ -16,12 +16,16 @@
             color: #FFFFFF;
             text-decoration: underline;
         }
+
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             font-family: 'Font Name', sans-serif;
             padding-top: 100px; /* Adjust as needed */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .background-image {
             position: fixed;
@@ -29,11 +33,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://img.freepik.com/free-vector/green-curve-frame-template_53876-99025.jpg');
+            background-image: url('https://t4.ftcdn.net/jpg/07/03/80/39/360_F_703803915_lCTLu5geWkfuIVOv5DyYV6V2l7WGJvDY.jpg');
             background-size: cover;
             background-position: top;
             z-index: -1;
         }
+
+
         canvas {
             width: 100% !important;
             height: auto !important;
@@ -101,33 +107,33 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(255,255,255,0.75);
+            background-color: rgba(255,255,255,0.85);
             border-radius: 0;
             z-index: 1000; /* Ensure navbar stays above other content */
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #FFFFFF;
         }
-        .navbar-brand:hover, .navbar-nav .nav-link:hover {
-            color: #FFFFFF;
-        }
+       .navbar-brand:hover, .navbar-nav .nav-link:hover {
+           color: #a3bd8c !important;
+       }
         nav a {
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
         }
         nav li a {
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
         }
         nav li button{
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
         }
         .nav-item {
-            color: #000000 !important;
+            color: #006747 !important;
             font-size: 20px !important;
             font: courier !important;
         }
@@ -225,7 +231,9 @@
 <span id="food1" th:food1="${food1}" style="display:none;"></span>
 <span id="misc1" th:misc1="${misc1}" style="display:none;"></span>
 <span id="savings1" th:savings1="${savings1}" style="display:none;"></span>
-
+<br>
+<br>
+<br>
 <footer>
     <p>Created By: Alyssa Lopez, Jonathan Garcia, Abel Abebe, Mustafa Shahzad </p>
 </footer>
